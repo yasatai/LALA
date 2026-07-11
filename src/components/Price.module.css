@@ -1,0 +1,142 @@
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.callout {
+  background: var(--bg-soft);
+  border-left: 3px solid var(--gold);
+  border-radius: 2px;
+  padding: 24px 26px;
+  margin-bottom: 36px;
+}
+
+.calloutTitle {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--navy);
+}
+
+.calloutBody {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.95;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.colTitle {
+  margin: 0 0 14px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.table tr {
+  border-bottom: 1px solid var(--line);
+}
+
+.table td {
+  padding: 13px 10px;
+}
+
+.label {
+  color: var(--text-2);
+}
+
+.value {
+  text-align: right;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.rowHighlight {
+  background: var(--bg-soft);
+}
+
+.rowHighlight .label {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.rowHighlight .value {
+  color: var(--gold);
+}
+
+/* paint-type table */
+.paintTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.paintTable thead tr {
+  border-bottom: 2px solid var(--navy);
+}
+
+.paintTable th {
+  padding: 10px 8px;
+  color: var(--navy);
+}
+
+.thType {
+  text-align: left;
+}
+.thYears {
+  text-align: center;
+}
+.thPrice {
+  text-align: right;
+}
+
+.paintTable tbody tr {
+  border-bottom: 1px solid var(--line);
+}
+
+.paintTable td {
+  padding: 11px 8px;
+}
+
+.tdType {
+  color: var(--text-2);
+}
+.tdYears {
+  text-align: center;
+  color: var(--text);
+}
+.tdPrice {
+  text-align: right;
+  color: var(--text);
+}
+
+.note {
+  margin: 26px 0 0;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.95;
+  text-align: center;
+}

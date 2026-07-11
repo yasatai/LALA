@@ -1,0 +1,1 @@
+export { voices } from './lala';

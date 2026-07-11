@@ -1,0 +1,43 @@
+.mobile {
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 55;
+  background: var(--navy);
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 15px;
+  border-radius: 3px;
+  border-bottom: 3px solid var(--gold);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.04em;
+}
+
+.desktop {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 55;
+  background: var(--gold);
+  color: #fff;
+  text-decoration: none;
+  writing-mode: vertical-rl;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 18px 12px;
+  border-radius: 4px 0 0 4px;
+  letter-spacing: 0.12em;
+  box-shadow: -6px 0 18px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease;
+}
+
+.desktop:hover {
+  background: var(--navy);
+}

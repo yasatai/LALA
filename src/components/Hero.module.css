@@ -1,0 +1,142 @@
+.hero {
+  position: relative;
+  background: linear-gradient(160deg, #15304d 0%, #1f436a 58%, #2a5a86 100%);
+  color: #fff;
+  overflow: hidden;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.ring1 {
+  right: -90px;
+  top: -90px;
+  width: 360px;
+  height: 360px;
+  border: 1px solid rgba(184, 146, 63, 0.32);
+  animation: floatRing 9s ease-in-out infinite;
+}
+
+.ring2 {
+  right: -20px;
+  top: -20px;
+  width: 240px;
+  height: 240px;
+  border: 1px solid rgba(184, 146, 63, 0.2);
+  animation: floatRing 7s ease-in-out infinite;
+}
+
+.ring3 {
+  left: -60px;
+  bottom: -80px;
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring1,
+  .ring2 {
+    animation: none;
+  }
+}
+
+.inner {
+  position: relative;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(54px, 8vw, 98px) clamp(20px, 5vw, 40px) clamp(40px, 5vw, 56px);
+}
+
+.copy {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  animation: fadeUp 0.9s ease both;
+}
+
+.eyebrow {
+  font-family: var(--font-latin);
+  font-weight: 600;
+  font-size: clamp(12px, 1.4vw, 15px);
+  color: var(--gold-light);
+  letter-spacing: 0.34em;
+  margin-bottom: 20px;
+}
+
+.title {
+  margin: 0 0 22px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(28px, 5.2vw, 46px);
+  line-height: 1.55;
+  letter-spacing: 0.03em;
+}
+
+.title em {
+  color: var(--gold-light);
+  font-style: normal;
+}
+
+.lead {
+  margin: 0 auto 30px;
+  max-width: 560px;
+  font-size: clamp(13px, 1.6vw, 15px);
+  color: #c8d6e5;
+  line-height: 2;
+}
+
+.scrollCue {
+  display: flex;
+  justify-content: center;
+}
+
+.scrollCue a {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #cdd9e7;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.scrollCue span {
+  border-bottom: 1px solid var(--gold-light);
+  padding-bottom: 3px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 680px;
+  margin: clamp(40px, 5vw, 56px) auto 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  animation: fadeUp 1.1s ease both;
+}
+
+.stat {
+  padding: 22px 8px;
+  text-align: center;
+}
+
+.stat + .stat {
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.statNum {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(20px, 3vw, 28px);
+  color: var(--gold-light);
+}
+
+.statLabel {
+  font-size: 11.5px;
+  color: #aebfd0;
+  margin-top: 5px;
+  letter-spacing: 0.06em;
+}
