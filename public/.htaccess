@@ -1,0 +1,36 @@
+# LALA - Apache (レンタルサーバー) 用設定
+# Vite SPA + PHP お問い合わせフォーム
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 実在するファイル・ディレクトリはそのまま配信（assets, images, api/contact.php 等）
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # アプリの既知ページはすべて index.html に転送（クライアント側ルーティング / 200）
+  RewriteRule ^(contact|privacy-policy|works|services|company|voices|blog)/?$ index.html [L]
+</IfModule>
+
+# 上記以外の存在しないパスは、正しく 404 を返す（SEO対応）
+ErrorDocument 404 /404.html
+
+# gzip 圧縮
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+# 静的アセットのキャッシュ（ファイル名にハッシュが付くため長期キャッシュ可）
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
