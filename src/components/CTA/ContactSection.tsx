@@ -8,13 +8,15 @@ type FormErrors = {
   contact?: string;
   message?: string;
   privacy?: string;
+  serverError?: string;
 };
 
 export function ContactSection() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
     const nextErrors: FormErrors = {};
@@ -33,9 +35,30 @@ export function ContactSection() {
     }
 
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length === 0) {
-      setSubmitted(true);
-      event.currentTarget.reset();
+    if (Object.keys(nextErrors).length > 0) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const data = Object.fromEntries(form);
+      const response = await fetch('/api/contact.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        event.currentTarget.reset();
+      } else {
+        const error = await response.json();
+        setErrors({ serverError: error.message || 'エラーが発生しました。' });
+      }
+    } catch (err) {
+      setErrors({ serverError: 'サーバーエラーが発生しました。' });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -63,6 +86,7 @@ export function ContactSection() {
           </div>
         ) : (
           <form className={styles.contactForm} onSubmit={handleSubmit} noValidate>
+            {errors.serverError && <p className={styles.formError}>{errors.serverError}</p>}
             <div className={styles.formGrid}>
               <label>
                 <span>お名前 <b>必須</b></span>
@@ -114,8 +138,8 @@ export function ContactSection() {
               <span><a href="/privacy-policy">プライバシーポリシー</a>に同意のうえ、送信します。</span>
             </label>
             {errors.privacy && <p className={styles.formError}>{errors.privacy}</p>}
-            <button className={styles.contactSubmit} type="submit">
-              相談内容を送信する <Arrow />
+            <button className={styles.contactSubmit} type="submit" disabled={isSubmitting}>
+              {isSubmitting ? '送信中...' : '相談内容を送信する'} <Arrow />
             </button>
           </form>
         )}
