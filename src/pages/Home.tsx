@@ -9,12 +9,15 @@ import { ServicesSection } from '../components/Services/ServicesSection';
 import { VoiceSection } from '../components/Voice/VoiceSection';
 import { WorksSection } from '../components/Works/WorksSection';
 import { useTopPageMotion } from '../hooks/useTopPageMotion';
+import { homeSeo } from '../seo/pageSeo';
+import { useSeo } from '../seo/seo';
 import '../styles/top-page-motion.css';
 import styles from './Home.module.css';
 
 export function Home() {
   const motionRootRef = useRef<HTMLDivElement>(null);
   useTopPageMotion(motionRootRef);
+  useSeo(homeSeo);
 
   return (
     <div ref={motionRootRef} className="top-page-motion-root">

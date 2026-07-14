@@ -1,18 +1,19 @@
-import { useEffect } from 'react';
+import { Breadcrumb } from '../components/Breadcrumb/Breadcrumb';
 import { SiteClosing } from '../components/Footer/SiteClosing';
 import { Header } from '../components/Header/Header';
+import { privacyPolicySeo } from '../seo/pageSeo';
+import { useSeo } from '../seo/seo';
 import styles from './Home.module.css';
 
 export function PrivacyPolicy() {
-  useEffect(() => {
-    document.title = 'プライバシーポリシー｜LALA ララ株式会社';
-  }, []);
+  useSeo(privacyPolicySeo);
 
   return (
     <>
       <Header />
       <main id="main" className={styles.policyPage}>
         <span id="top" aria-hidden="true" />
+        <Breadcrumb trail={privacyPolicySeo.breadcrumb!} />
         <div className={styles.policyHeader}>
           <span>Privacy Policy</span>
           <h1>プライバシーポリシー</h1>

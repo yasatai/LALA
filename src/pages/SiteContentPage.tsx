@@ -1,17 +1,50 @@
-import { useEffect } from 'react';
+import { Breadcrumb } from '../components/Breadcrumb/Breadcrumb';
 import { SiteClosing } from '../components/Footer/SiteClosing';
 import { Header } from '../components/Header/Header';
 import { serviceDetails, voiceStories, works } from '../data/lala';
+import { useSeo } from '../seo/seo';
 import styles from './SiteContentPage.module.css';
 
 export type SitePageKey = 'works' | 'services' | 'company' | 'voices' | 'blog';
 
-const pageMeta: Record<SitePageKey, { label: string; title: string; description: string }> = {
-  works: { label: 'Works', title: '施工イメージ', description: '住まいの状態とご希望に合わせた、リフォームの施工イメージをご紹介します。' },
-  services: { label: 'Services', title: 'サービスメニュー', description: '診断から施工まで、自社対応で住まいのお悩みに幅広くお応えします。' },
-  company: { label: 'Company', title: '会社概要', description: '宮城・仙台に根ざし、自社施工・自社管理で住まいの工事を一貫して支えるララ株式会社です。' },
-  voices: { label: 'Voice', title: 'お客様の声', description: 'リフォームをご相談いただいたお客様から寄せられた声をご紹介します。' },
-  blog: { label: 'Blog', title: '施工イメージ更新情報', description: '日々の施工イメージや住まいづくりの情報をInstagramで更新しています。' },
+type PageMeta = { label: string; title: string; description: string; seoDescription: string; path: string };
+
+const pageMeta: Record<SitePageKey, PageMeta> = {
+  works: {
+    label: 'Works',
+    title: '施工イメージ',
+    description: '住まいの状態とご希望に合わせた、リフォームの施工イメージをご紹介します。',
+    seoDescription: '宮城・仙台のリフォーム施工イメージ集。外壁塗装・屋根・玄関・キッチン・水まわりなど、住まいの状態とご希望に合わせたLALA（ララ株式会社）の施工例をビフォーアフターでご紹介します。',
+    path: '/works',
+  },
+  services: {
+    label: 'Services',
+    title: 'サービスメニュー',
+    description: '診断から施工まで、自社対応で住まいのお悩みに幅広くお応えします。',
+    seoDescription: '宮城・仙台の住宅リフォームサービス一覧。塗装・外装・内装・水まわり・足場・解体・床下工事まで、診断から施工までLALA（ララ株式会社）が自社対応でお応えします。',
+    path: '/services',
+  },
+  company: {
+    label: 'Company',
+    title: '会社概要',
+    description: '宮城・仙台に根ざし、自社施工・自社管理で住まいの工事を一貫して支えるララ株式会社です。',
+    seoDescription: '仙台市太白区に拠点を置くララ株式会社（LALA）の会社概要。宮城・仙台地域密着で、自社施工・自社管理により住まいのリフォーム工事を一貫して支えます。',
+    path: '/company',
+  },
+  voices: {
+    label: 'Voice',
+    title: 'お客様の声',
+    description: 'リフォームをご相談いただいたお客様から寄せられた声をご紹介します。',
+    seoDescription: '宮城・仙台でLALA（ララ株式会社）にリフォームをご相談いただいたお客様の声。工事前のお悩みから施工後のご感想まで、実際の体験談をご紹介します。',
+    path: '/voices',
+  },
+  blog: {
+    label: 'Blog',
+    title: '施工イメージ更新情報',
+    description: '日々の施工イメージや住まいづくりの情報をInstagramで更新しています。',
+    seoDescription: 'LALA（ララ株式会社）の最新施工イメージ更新情報。宮城・仙台の住まいづくりや日々の施工例をInstagramで発信しています。',
+    path: '/blog',
+  },
 };
 
 const instagramImages = [
@@ -133,14 +166,20 @@ export function SiteContentPage({ page }: { page: SitePageKey }) {
         : page === 'voices'
           ? styles.voicesHero
           : '';
-  useEffect(() => {
-    document.title = `${meta.title}｜LALA ララ株式会社`;
-  }, [meta.title]);
+  useSeo({
+    title: meta.title,
+    description: meta.seoDescription,
+    path: meta.path,
+    breadcrumb: [
+      { name: 'ホーム', path: '/' },
+      { name: meta.title, path: meta.path },
+    ],
+  });
 
   return <div id="top" className={styles.page}>
     <Header />
     <main id="main">
-      <header className={`${styles.hero} ${heroVariant}`}><span>{meta.label}</span><h1>{meta.title}</h1><p>{meta.description}</p><a href="/">← トップページへ戻る</a></header>
+      <header className={`${styles.hero} ${heroVariant}`}><Breadcrumb trail={[{ name: 'ホーム', path: '/' }, { name: meta.title, path: meta.path }]} /><span>{meta.label}</span><h1>{meta.title}</h1><p>{meta.description}</p><a href="/">← トップページへ戻る</a></header>
       <section className={styles.content} aria-label={meta.title}><PageBody page={page} /></section>
     </main>
     <SiteClosing showCta />
