@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Footer } from '../components/Footer/Footer';
+import { SiteClosing } from '../components/Footer/SiteClosing';
 import { Header } from '../components/Header/Header';
 import styles from './Home.module.css';
 
@@ -27,7 +27,7 @@ export function PrivacyPolicy() {
 
           <section>
             <h2>2. 取得する個人情報</h2>
-            <p>当社は、お問い合わせ、無料相談、無料見積り、現地調査、契約、施工、アフターサービス等に際して、次の情報を取得する場合があります。</p>
+            <p>当社は、お問い合わせ、無料相談、無料見積もり、現地調査、契約、施工、アフターサービス等に際して、次の情報を取得する場合があります。</p>
             <ul>
               <li>氏名、住所、電話番号、メールアドレスその他の連絡先</li>
               <li>お問い合わせ内容、ご相談内容およびご希望の工事内容</li>
@@ -36,7 +36,7 @@ export function PrivacyPolicy() {
               <li>現地調査、施工または点検時に確認もしくは撮影した建物、施工予定箇所、施工箇所および建物外観等の情報</li>
               <li>契約内容、施工内容、保証内容、代金の支払状況その他のお取引に関する情報</li>
               <li>当社Webサイトの閲覧履歴、端末情報、Cookie、IPアドレスその他のアクセス情報</li>
-              <li>その他、相談、見積り、契約、施工、保証、点検およびアフターサービスに必要な情報</li>
+              <li>その他、相談、見積もり、契約、施工、保証、点検およびアフターサービスに必要な情報</li>
             </ul>
           </section>
 
@@ -51,7 +51,7 @@ export function PrivacyPolicy() {
             <p>当社は、取得した個人情報を次の目的で利用します。</p>
             <ul>
               <li>お問い合わせ、ご相談およびご依頼への回答</li>
-              <li>無料相談、無料見積りおよび現地調査の日程調整</li>
+              <li>無料相談、無料見積もりおよび現地調査の日程調整</li>
               <li>建物の状態確認、工事内容の検討および施工方法の提案</li>
               <li>見積書、提案書、契約書その他の書類の作成および送付</li>
               <li>契約手続、資材手配、施工管理、工事実施および代金の請求</li>
@@ -64,7 +64,7 @@ export function PrivacyPolicy() {
               <li>法令、行政機関または裁判所等からの要請に基づく対応</li>
               <li>前各号に付随する業務の遂行</li>
             </ul>
-            <p>お問い合わせフォームの送信、無料相談、無料見積りまたは現地調査のご依頼は、工事契約の申込みまたは工事契約の成立を意味するものではありません。</p>
+            <p>お問い合わせフォームの送信、無料相談、無料見積もりまたは現地調査のご依頼は、工事契約の申込みまたは工事契約の成立を意味するものではありません。</p>
             <p>正式な工事契約は、工事内容、見積金額、契約条件、保証内容その他の必要事項について、当社とお客様が契約書面等により合意した時点で成立します。</p>
           </section>
 
@@ -177,7 +177,7 @@ export function PrivacyPolicy() {
         </div>
         <a className={styles.policyBack} href="/contact">お問い合わせへ戻る</a>
       </main>
-      <Footer />
+      <SiteClosing showCta />
     </>
   );
 }

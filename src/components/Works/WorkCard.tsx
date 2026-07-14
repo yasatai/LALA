@@ -6,15 +6,18 @@ type WorkItem = (typeof homeWorks)[number];
 
 interface WorkCardProps {
   work: WorkItem;
+  motionOrder: number;
   onCompareStart: () => void;
   onCompareEnd: () => void;
 }
 
 const clampPosition = (value: number) => Math.min(90, Math.max(10, value));
 
-export function WorkCard({ work, onCompareStart, onCompareEnd }: WorkCardProps) {
+export function WorkCard({ work, motionOrder, onCompareStart, onCompareEnd }: WorkCardProps) {
   const [position, setPosition] = useState(50);
   const compareRef = useRef<HTMLDivElement>(null);
+  const optimizedAfter = work.after.replace(/\.webp$/, '-960.webp');
+  const optimizedBefore = work.before.replace(/\.webp$/, '-960.webp');
 
   const updateFromPointer = (clientX: number) => {
     const bounds = compareRef.current?.getBoundingClientRect();
@@ -58,16 +61,30 @@ export function WorkCard({ work, onCompareStart, onCompareEnd }: WorkCardProps) 
   };
 
   return (
-    <article className={styles.workCard}>
+    <article data-motion-item data-motion-order={motionOrder} className={styles.workCard}>
       <div ref={compareRef} className={styles.workCompare}>
-        <img src={work.after} alt={`${work.title}の施工後`} width="720" height="480" loading="lazy" />
+        <img
+          src={work.after}
+          srcSet={`${optimizedAfter} 960w`}
+          sizes="(max-width: 767px) calc(100vw - 40px), clamp(380px, 32vw, 600px)"
+          alt={`${work.title}の施工後`}
+          width="720"
+          height="480"
+          loading="lazy"
+          decoding="async"
+          fetchPriority="low"
+        />
         <img
           className={styles.workBefore}
           src={work.before}
+          srcSet={`${optimizedBefore} 960w`}
+          sizes="(max-width: 767px) calc(100vw - 40px), clamp(380px, 32vw, 600px)"
           alt={`${work.title}の施工前`}
           width="720"
           height="480"
           loading="lazy"
+          decoding="async"
+          fetchPriority="low"
           style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
         />
         <span className={styles.beforeLabel}>Before</span>

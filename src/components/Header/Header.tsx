@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { company, navigation } from '../../data/lala';
 import { MailIcon, PhoneIcon } from '../LalaIcons';
 import styles from '../../pages/Home.module.css';
@@ -6,12 +6,19 @@ import styles from '../../pages/Home.module.css';
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const scrollSentinelRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const sentinel = scrollSentinelRef.current;
+    if (!sentinel || !('IntersectionObserver' in window)) return undefined;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setScrolled(!entry?.isIntersecting);
+    });
+    observer.observe(sentinel);
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -41,8 +48,41 @@ export function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!open || !drawerRef.current) return undefined;
+
+    const drawer = drawerRef.current;
+    const focusable = Array.from(drawer.querySelectorAll<HTMLElement>('a[href], button:not([disabled])'));
+    const first = focusable[0];
+    const last = focusable.at(-1);
+    first?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setOpen(false);
+        window.requestAnimationFrame(() => menuButtonRef.current?.focus());
+        return;
+      }
+
+      if (event.key !== 'Tab' || !first || !last) return;
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [open]);
+
   return (
-    <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ''}`}>
+    <>
+      <span ref={scrollSentinelRef} className={styles.headerScrollSentinel} aria-hidden="true" />
+      <header data-top-header className={`${styles.header} ${scrolled ? styles.headerScrolled : ''}`}>
       <a className={styles.skip} href="#main">本文へ移動</a>
       <div className={styles.headerInner}>
         <a className={styles.brand} href="/#top" onClick={() => setOpen(false)}>
@@ -52,6 +92,8 @@ export function Header() {
             alt="LALA ララ株式会社"
             width="280"
             height="150"
+            loading="eager"
+            decoding="async"
           />
           <span className={styles.brandCopy}>{company.tagline}</span>
         </a>
@@ -71,10 +113,12 @@ export function Header() {
             <span><MailIcon /> まずは無料で相談する</span>
           </a>
           <button
+            ref={menuButtonRef}
             type="button"
             className={styles.menuButton}
-            aria-label="メニューを開閉する"
+            aria-label={open ? 'メニューを閉じる' : 'メニューを開く'}
             aria-expanded={open}
+            aria-controls="mobile-navigation"
             onClick={() => setOpen((value) => !value)}
           >
             <span />
@@ -83,7 +127,13 @@ export function Header() {
         </div>
       </div>
 
-      <div className={`${styles.mobileDrawer} ${open ? styles.mobileDrawerOpen : ''}`}>
+      <div
+        ref={drawerRef}
+        id="mobile-navigation"
+        className={`${styles.mobileDrawer} ${open ? styles.mobileDrawerOpen : ''}`}
+        aria-hidden={!open}
+        inert={!open}
+      >
         <nav aria-label="スマートフォン用ナビゲーション">
           {navigation.map((item) => (
             <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
@@ -95,6 +145,7 @@ export function Header() {
           まずは無料で相談する
         </a>
       </div>
-    </header>
+      </header>
+    </>
   );
 }

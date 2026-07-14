@@ -1,0 +1,117 @@
+.navigation {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .navigation {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 120;
+    display: block;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: rgba(255, 253, 249, 0.98);
+    border-top: 1px solid rgba(55, 48, 38, 0.12);
+    box-shadow: 0 -8px 24px rgba(47, 39, 29, 0.11);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .inner {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    min-height: 70px;
+  }
+
+  .item {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    min-height: 70px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 7px 4px 6px;
+    color: #5d584f;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 160ms ease, background-color 160ms ease, transform 120ms ease;
+  }
+
+  .item + .item::before {
+    position: absolute;
+    top: 15px;
+    bottom: 15px;
+    left: 0;
+    width: 1px;
+    background: rgba(55, 48, 38, 0.08);
+    content: '';
+  }
+
+  .item svg {
+    width: 23px;
+    height: 23px;
+    stroke-width: 1.9;
+  }
+
+  .item:active {
+    transform: translateY(1px);
+  }
+
+  .active {
+    color: var(--color-gold-dark);
+    background: rgba(201, 154, 69, 0.08);
+  }
+
+  .active::after {
+    position: absolute;
+    top: 0;
+    right: 22%;
+    left: 22%;
+    height: 2px;
+    background: var(--color-gold);
+    content: '';
+  }
+
+  .action {
+    color: var(--color-green-dark);
+  }
+
+  .action:last-child {
+    color: #fff;
+    background: var(--color-gold-dark);
+  }
+
+  .action:last-child::before {
+    display: none;
+  }
+
+  .action:last-child.active {
+    color: #fff;
+    background: var(--color-gold-dark);
+  }
+}
+
+@media (max-width: 360px) {
+  .item {
+    font-size: 10px;
+  }
+
+  .item svg {
+    width: 21px;
+    height: 21px;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) and (max-width: 700px) {
+  .navigation {
+    background: #fffdf9;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}

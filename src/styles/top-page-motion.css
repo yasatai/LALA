@@ -1,0 +1,177 @@
+.top-page-motion-root {
+  --motion-entry-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-state-ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-motion-group='promise'] {
+  --motion-duration: 520ms;
+  --motion-stagger: 70ms;
+  --motion-distance: 12px;
+  --motion-scale: 1;
+}
+
+[data-motion-group='services'] {
+  --motion-duration: 560ms;
+  --motion-stagger: 70ms;
+  --motion-distance: 16px;
+  --motion-scale: 1;
+}
+
+[data-motion-group='works'] {
+  --motion-duration: 520ms;
+  --motion-stagger: 80ms;
+  --motion-distance: 14px;
+  --motion-scale: 1;
+}
+
+[data-motion-group='voice'] {
+  --motion-duration: 500ms;
+  --motion-stagger: 70ms;
+  --motion-distance: 12px;
+  --motion-scale: 1;
+}
+
+[data-motion-group='instagram'] {
+  --motion-duration: 420ms;
+  --motion-stagger: 50ms;
+  --motion-distance: 0px;
+  --motion-scale: 0.985;
+}
+
+[data-motion-group='final-cta'] {
+  --motion-duration: 560ms;
+  --motion-stagger: 90ms;
+  --motion-distance: 14px;
+  --motion-scale: 1;
+}
+
+[data-motion-order='0'] { --motion-order: 0; }
+[data-motion-order='1'] { --motion-order: 1; }
+[data-motion-order='2'] { --motion-order: 2; }
+[data-motion-order='3'] { --motion-order: 3; }
+[data-motion-order='4'] { --motion-order: 4; }
+[data-motion-order='5'] { --motion-order: 5; }
+[data-motion-order='6'] { --motion-order: 6; }
+[data-motion-order='7'] { --motion-order: 7; }
+[data-motion-order='8'] { --motion-order: 8; }
+[data-motion-order='9'] { --motion-order: 9; }
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-top-header] {
+    animation: top-header-enter 360ms var(--motion-entry-ease) both;
+  }
+
+  [data-hero-motion] {
+    opacity: 0;
+    animation: hero-copy-enter 560ms var(--motion-entry-ease) both;
+  }
+
+  [data-hero-motion='badge'] { animation-delay: 100ms; }
+  [data-hero-motion='title'] { animation-delay: 180ms; }
+  [data-hero-motion='actions'] { animation-delay: 280ms; }
+
+  .top-page-motion-root[data-motion-ready='true']
+    [data-motion-group]:not([data-motion-visible='true'])
+    [data-motion-item] {
+    opacity: 0;
+    transform: translate3d(0, var(--motion-distance), 0) scale(var(--motion-scale));
+  }
+
+  .top-page-motion-root[data-motion-ready='true']
+    [data-motion-group][data-motion-visible='true']
+    [data-motion-item] {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition:
+      opacity var(--motion-duration) var(--motion-entry-ease),
+      transform var(--motion-duration) var(--motion-entry-ease);
+    transition-delay: calc(var(--motion-order, 0) * var(--motion-stagger));
+  }
+
+  .top-page-motion-root[data-motion-ready='true']
+    [data-motion-group]:focus-within
+    [data-motion-item] {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  [data-faq-item][open] > p {
+    animation: faq-answer-enter 160ms var(--motion-state-ease) both;
+  }
+}
+
+@keyframes top-header-enter {
+  from { transform: translate3d(0, -6px, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes hero-copy-enter {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes faq-answer-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+  [data-top-header] {
+    animation-duration: 300ms;
+  }
+
+  [data-hero-motion] {
+    animation-duration: 460ms;
+  }
+
+  [data-hero-motion='badge'] { animation-delay: 80ms; }
+  [data-hero-motion='title'] { animation-delay: 140ms; }
+  [data-hero-motion='actions'] { animation-delay: 210ms; }
+
+  [data-motion-group] {
+    --motion-distance: 8px;
+  }
+
+  [data-motion-group='promise'] {
+    --motion-duration: 440ms;
+    --motion-stagger: 40ms;
+  }
+
+  [data-motion-group='services'] {
+    --motion-duration: 460ms;
+    --motion-stagger: 40ms;
+  }
+
+  [data-motion-group='works'] {
+    --motion-duration: 440ms;
+    --motion-stagger: 40ms;
+  }
+
+  [data-motion-group='voice'] {
+    --motion-duration: 420ms;
+    --motion-stagger: 40ms;
+  }
+
+  [data-motion-group='instagram'] {
+    --motion-duration: 360ms;
+    --motion-stagger: 30ms;
+    --motion-distance: 0px;
+  }
+
+  [data-motion-group='final-cta'] {
+    --motion-duration: 460ms;
+    --motion-stagger: 50ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-top-header],
+  [data-hero-motion],
+  [data-motion-item],
+  [data-faq-item][open] > p {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}

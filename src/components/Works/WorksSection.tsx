@@ -82,9 +82,9 @@ export function WorksSection() {
   const endComparing = () => viewportRef.current?.classList.remove(styles.worksComparing);
 
   return (
-    <section id="works" className={`${styles.section} ${styles.works}`} aria-labelledby="works-title">
+    <section id="works" data-motion-group="works" className={`${styles.section} ${styles.works}`} aria-labelledby="works-title">
       <div className={styles.worksInner}>
-        <header className={styles.worksHeader}>
+        <header data-motion-item data-motion-order="0" className={styles.worksHeader}>
           <h2 id="works-title">施工イメージ</h2>
           <a className={styles.worksAllLink} href="/works">
             <span>すべての事例を見る</span>
@@ -102,10 +102,11 @@ export function WorksSection() {
             onKeyDown={handleViewportKeyDown}
           >
             <div ref={trackRef} className={styles.worksTrack}>
-              {homeWorks.map((work) => (
+              {homeWorks.map((work, index) => (
                 <WorkCard
                   key={work.title}
                   work={work}
+                  motionOrder={index + 1}
                   onCompareStart={startComparing}
                   onCompareEnd={endComparing}
                 />
@@ -114,7 +115,7 @@ export function WorksSection() {
           </div>
         </div>
 
-        <footer className={styles.worksFooter}>
+        <footer data-motion-item data-motion-order={homeWorks.length + 1} className={styles.worksFooter}>
           <div ref={progressRef} className={styles.worksProgress} aria-hidden="true">
             <span />
           </div>

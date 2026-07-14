@@ -1,32 +1,33 @@
-# React + TypeScript + Vite
+# LALA ウェブサイト
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+画像は `public/images` に保存しています。写真はWebPへ軽量化し、透明ロゴなど必要な素材だけPNGで保持しています。
 
-Currently, two official plugins are available:
+## 技術構成
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19 + TypeScript
+- Vite
+- CSS Modules（ページ・コンポーネント）+ `src/styles/global.css`（共通トークン）
+- Netlify
 
-## React Compiler
+現行ページで使用するコンポーネントは、機能単位で `src/components/<Feature>/` にまとめています。下層ページと宮城県エリア演出は遅延読み込みし、トップページの初期JavaScriptと画像読込を抑えています。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Netlifyの既知ルートは `netlify.toml` で管理し、存在しないURLには `public/404.html` を返します。リダイレクト設定を二重管理しないため、`public/_redirects` は使用しません。
 
-## Expanding the Oxlint configuration
+## 開発
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```sh
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## 本番用ファイルの生成
+
+```sh
+npm run build
+```
+
+生成された `dist` フォルダーが公開用ファイルです。
+
+## ローカル表示
+
+本番用ファイルを生成した後、`start-local.cmd` を実行します。既知ページは直接URLでも表示され、存在しないURLは404になります。

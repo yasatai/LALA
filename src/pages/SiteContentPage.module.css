@@ -54,7 +54,7 @@
   background:
     linear-gradient(90deg, rgba(15, 30, 22, 0.68) 0%, rgba(15, 30, 22, 0.42) 34%, rgba(15, 30, 22, 0.08) 66%, transparent 100%),
     linear-gradient(0deg, rgba(8, 18, 13, 0.25), transparent 48%),
-    url('/images/company-hero-sendai.jpg') center 48% / cover no-repeat;
+    url('/images/company-hero-sendai.webp') center 48% / cover no-repeat;
 }
 
 .companyHero span {
@@ -79,21 +79,21 @@
   background:
     linear-gradient(90deg, rgba(20, 29, 24, 0.66) 0%, rgba(20, 29, 24, 0.38) 35%, rgba(20, 29, 24, 0.06) 68%, transparent 100%),
     linear-gradient(0deg, rgba(14, 20, 16, 0.22), transparent 46%),
-    url('/images/works-hero-craftsmen.png') center 48% / cover no-repeat;
+    url('/images/works-hero-craftsmen.webp') center 48% / cover no-repeat;
 }
 
 .servicesHero {
   background:
     linear-gradient(90deg, rgba(31, 27, 21, 0.65) 0%, rgba(31, 27, 21, 0.36) 34%, rgba(31, 27, 21, 0.06) 68%, transparent 100%),
     linear-gradient(0deg, rgba(24, 20, 15, 0.2), transparent 46%),
-    url('/images/services-hero-collage.png') center 48% / cover no-repeat;
+    url('/images/services-hero-collage.webp') center 48% / cover no-repeat;
 }
 
 .voicesHero {
   background:
     linear-gradient(90deg, rgba(35, 30, 24, 0.58) 0%, rgba(35, 30, 24, 0.3) 31%, rgba(35, 30, 24, 0.04) 58%, transparent 75%),
     linear-gradient(0deg, rgba(25, 21, 16, 0.18), transparent 46%),
-    url('/images/voices-hero-consultation.png') center 48% / cover no-repeat;
+    url('/images/voices-hero-consultation.webp') center 48% / cover no-repeat;
 }
 
 .worksHero span,

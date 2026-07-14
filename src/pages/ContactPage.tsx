@@ -1,5 +1,5 @@
 import { ContactSection } from '../components/CTA/ContactSection';
-import { Footer } from '../components/Footer/Footer';
+import { SiteClosing } from '../components/Footer/SiteClosing';
 import { Header } from '../components/Header/Header';
 import styles from './Home.module.css';
 
@@ -11,7 +11,7 @@ export function ContactPage() {
         <span id="top" aria-hidden="true" />
         <ContactSection />
       </main>
-      <Footer />
+      <SiteClosing />
     </>
   );
 }
