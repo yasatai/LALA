@@ -1,4 +1,5 @@
 import { municipalities, type MunicipalityRegion } from '../../data/municipalities';
+import { withBase } from '../../lib/basePath';
 
 export type MunicipalityRenderData = {
   code: string;
@@ -43,7 +44,7 @@ export function getPreparedMiyagiMapData() {
 
 export function prepareMiyagiMapData() {
   if (!renderDataRequest) {
-    renderDataRequest = fetch('/data/miyagi-map-render-data.json')
+    renderDataRequest = fetch(withBase('/data/miyagi-map-render-data.json'))
       .then((response) => {
         if (!response.ok) throw new Error(`Miyagi map render data: ${response.status}`);
         return response.json() as Promise<MiyagiMapRenderData>;
