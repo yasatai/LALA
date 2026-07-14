@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { withBase } from '../../lib/basePath';
 import styles from '../../pages/Home.module.css';
 import { MiyagiMunicipalityMap } from './MiyagiMunicipalityMap';
 
@@ -170,7 +171,7 @@ export function AreaStorySection() {
         <div className={styles.storyStationCircle} aria-hidden="true">
           <img
             className={styles.storyStationImage}
-            src="/images/sendai-station.webp"
+            src={withBase('/images/sendai-station.webp')}
             loading="lazy"
             decoding="async"
             alt=""
@@ -189,8 +190,8 @@ export function AreaStorySection() {
               <p>ご相談・お見積もりは無料です。無理な営業はせず、住まいの状態に合わせて必要なことだけをご案内します。</p>
             </div>
             <div className={styles.storyAboutActions}>
-              <a href="/contact">私たちに相談する <b aria-hidden="true">→</b></a>
-              <a className={styles.storyAboutSecondary} href="/company">会社概要を見る <b aria-hidden="true">→</b></a>
+              <a href={withBase('/contact')}>私たちに相談する <b aria-hidden="true">→</b></a>
+              <a className={styles.storyAboutSecondary} href={withBase('/company')}>会社概要を見る <b aria-hidden="true">→</b></a>
             </div>
           </div>
 

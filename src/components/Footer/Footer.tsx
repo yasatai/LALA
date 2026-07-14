@@ -1,3 +1,4 @@
+import { withBase, withBaseSrcSet } from '../../lib/basePath';
 import styles from '../../pages/Home.module.css';
 
 const serviceLinks = [
@@ -23,7 +24,7 @@ export function Footer() {
       <div className={styles.footerBrand}>
         <img
           className={styles.footerLogo}
-          src="/images/header-logo.png"
+          src={withBase('/images/header-logo.png')}
           loading="lazy"
           decoding="async"
           alt="LALA ララ株式会社"
@@ -35,13 +36,13 @@ export function Footer() {
       <section className={styles.footerColumn} aria-labelledby="footer-services-title">
         <h2 id="footer-services-title">サービス</h2>
         <nav aria-label="サービス一覧">
-          {serviceLinks.map((link) => <a key={link.label} href={link.href}>{link.label}</a>)}
+          {serviceLinks.map((link) => <a key={link.label} href={withBase(link.href)}>{link.label}</a>)}
         </nav>
       </section>
       <section className={styles.footerColumn} aria-labelledby="footer-company-title">
         <h2 id="footer-company-title">会社情報</h2>
         <nav aria-label="会社情報一覧">
-          {companyLinks.map((link) => <a key={link.label} href={link.href}>{link.label}</a>)}
+          {companyLinks.map((link) => <a key={link.label} href={withBase(link.href)}>{link.label}</a>)}
         </nav>
       </section>
       <section className={styles.footerBusiness} aria-labelledby="footer-business-title">
@@ -54,8 +55,8 @@ export function Footer() {
       </section>
       <img
         className={styles.footerMascot}
-        src="/images/mascot.png"
-        srcSet="/images/mascot-240.webp 240w"
+        src={withBase('/images/mascot.png')}
+        srcSet={withBaseSrcSet('/images/mascot-240.webp 240w')}
         sizes="120px"
         loading="lazy"
         decoding="async"

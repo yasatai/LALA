@@ -1,4 +1,5 @@
 import type { services } from '../../data/lala';
+import { withBase, withBaseSrcSet } from '../../lib/basePath';
 import styles from '../../pages/Home.module.css';
 
 type ServiceItem = (typeof services)[number];
@@ -16,8 +17,8 @@ export function ServiceCard({ service, motionOrder }: ServiceCardProps) {
       <div className={styles.serviceCardShape}>
         <img
           className={styles.serviceCardImage}
-          src={service.image}
-          srcSet={`${optimizedImage} 960w`}
+          src={withBase(service.image)}
+          srcSet={withBaseSrcSet(`${optimizedImage} 960w`)}
           sizes="(max-width: 767px) calc(100vw - 40px), 33vw"
           alt={`${service.title}のリフォームイメージ`}
           width="800"
@@ -38,7 +39,7 @@ export function ServiceCard({ service, motionOrder }: ServiceCardProps) {
           </p>
         </div>
       </div>
-      <a href={`/services#service-${service.number}`} aria-label={`${service.title}の詳細を見る`}>→</a>
+      <a href={withBase(`/services#service-${service.number}`)} aria-label={`${service.title}の詳細を見る`}>→</a>
     </article>
   );
 }

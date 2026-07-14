@@ -1,4 +1,5 @@
 import { company } from '../../data/lala';
+import { withBase } from '../../lib/basePath';
 import { Arrow } from '../LalaPrimitives';
 import styles from '../../pages/Home.module.css';
 
@@ -14,7 +15,7 @@ export function FinalCTA() {
         </p>
       </div>
       <div data-motion-item data-motion-order="1" className={styles.finalCtaContact}>
-        <a className={styles.primaryCta} href="/contact"><span aria-hidden="true">✉</span> お問い合わせフォームへ <Arrow /></a>
+        <a className={styles.primaryCta} href={withBase('/contact')}><span aria-hidden="true">✉</span> お問い合わせフォームへ <Arrow /></a>
         <div className={styles.ctaPhone}>
           <span>お電話でのご相談</span>
           <a href={`tel:${company.phone.replaceAll('-', '')}`}>{company.phone}</a>

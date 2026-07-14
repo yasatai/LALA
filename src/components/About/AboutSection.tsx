@@ -1,3 +1,4 @@
+import { withBase } from '../../lib/basePath';
 import { Arrow } from '../LalaPrimitives';
 import styles from '../../pages/Home.module.css';
 
@@ -7,14 +8,14 @@ export function AboutSection() {
       <div className={styles.aboutImages}>
         <img
           className={styles.aboutMain}
-          src="/images/renovation-kitchen-ldk.png"
+          src={withBase('/images/renovation-kitchen-ldk.png')}
           alt="キッチンとLDKを改修した住まい"
           width="1200"
           height="840"
         />
         <img
           className={styles.aboutSub}
-          src="/images/renovation-bath-wash.png"
+          src={withBase('/images/renovation-bath-wash.png')}
           alt="浴室と洗面を改修した水まわり"
           width="900"
           height="640"
@@ -29,7 +30,7 @@ export function AboutSection() {
         <p>
           小さな修繕から大規模リフォームまで、自社施工・自社管理による確かな品質でお応えします。
         </p>
-        <a className={styles.textLink} href="/company">会社概要を見る <Arrow /></a>
+        <a className={styles.textLink} href={withBase('/company')}>会社概要を見る <Arrow /></a>
       </div>
     </section>
   );

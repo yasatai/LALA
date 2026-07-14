@@ -1,3 +1,4 @@
+import { withBase, withBaseSrcSet } from '../../lib/basePath';
 import { Arrow } from '../LalaPrimitives';
 import styles from '../../pages/Home.module.css';
 
@@ -35,8 +36,8 @@ export function InstagramSection() {
             aria-label={`Instagramで施工例${index + 1}を見る`}
           >
             <img
-              src={image}
-              srcSet={`${image.replace(/\.webp$/, '-640.webp')} 640w`}
+              src={withBase(image)}
+              srcSet={withBaseSrcSet(`${image.replace(/\.webp$/, '-640.webp')} 640w`)}
               sizes="(max-width: 767px) 28vw, 12vw"
               alt="Instagram投稿用の施工写真"
               width="360"

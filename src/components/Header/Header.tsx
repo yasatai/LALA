@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { company, navigation } from '../../data/lala';
+import { withBase } from '../../lib/basePath';
 import { MailIcon, PhoneIcon } from '../LalaIcons';
 import styles from '../../pages/Home.module.css';
 
@@ -85,10 +86,10 @@ export function Header() {
       <header data-top-header className={`${styles.header} ${scrolled ? styles.headerScrolled : ''}`}>
       <a className={styles.skip} href="#main">本文へ移動</a>
       <div className={styles.headerInner}>
-        <a className={styles.brand} href="/#top" onClick={() => setOpen(false)}>
+        <a className={styles.brand} href={withBase('/#top')} onClick={() => setOpen(false)}>
           <img
             className={styles.headerLogo}
-            src="/images/header-logo.png"
+            src={withBase('/images/header-logo.png')}
             alt="LALA ララ株式会社"
             width="280"
             height="150"
@@ -100,7 +101,7 @@ export function Header() {
 
         <nav className={styles.nav} aria-label="主要ナビゲーション">
           {navigation.map((item) => (
-            <a key={item.href} href={item.href}>{item.label}</a>
+            <a key={item.href} href={withBase(item.href)}>{item.label}</a>
           ))}
         </nav>
 
@@ -109,7 +110,7 @@ export function Header() {
             <span><PhoneIcon /> {company.phone}</span>
             <small>{company.hours}</small>
           </a>
-          <a className={styles.headerCta} href="/contact">
+          <a className={styles.headerCta} href={withBase('/contact')}>
             <span><MailIcon /> まずは無料で相談する</span>
           </a>
           <button
@@ -136,12 +137,12 @@ export function Header() {
       >
         <nav aria-label="スマートフォン用ナビゲーション">
           {navigation.map((item) => (
-            <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+            <a key={item.href} href={withBase(item.href)} onClick={() => setOpen(false)}>
               {item.label}
             </a>
           ))}
         </nav>
-        <a className={styles.drawerCta} href="/contact" onClick={() => setOpen(false)}>
+        <a className={styles.drawerCta} href={withBase('/contact')} onClick={() => setOpen(false)}>
           まずは無料で相談する
         </a>
       </div>

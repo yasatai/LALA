@@ -1,4 +1,5 @@
 import type { voices } from '../../data/lala';
+import { withBase, withBaseSrcSet } from '../../lib/basePath';
 import styles from '../../pages/Home.module.css';
 import { Arrow } from '../LalaPrimitives';
 
@@ -22,10 +23,10 @@ export function VoiceCard({ item, motionOrder }: VoiceCardProps) {
 
   return (
     <article data-motion-item data-motion-order={motionOrder} className={styles.voiceCard}>
-      <a className={styles.voiceCardLink} href="/voices" aria-label={`${item.quote}のお客様の声を詳しく見る`}>
+      <a className={styles.voiceCardLink} href={withBase('/voices')} aria-label={`${item.quote}のお客様の声を詳しく見る`}>
         <img
-          src={item.image}
-          srcSet={`${optimizedImage} 320w`}
+          src={withBase(item.image)}
+          srcSet={withBaseSrcSet(`${optimizedImage} 320w`)}
           sizes="84px"
           alt={`${item.name}のイメージ`}
           width="220"

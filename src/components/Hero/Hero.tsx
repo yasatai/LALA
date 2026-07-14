@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { company } from '../../data/lala';
+import { withBase } from '../../lib/basePath';
 import { MailIcon, MapPinIcon, PhoneIcon } from '../LalaIcons';
 import { Arrow } from '../LalaPrimitives';
 import styles from '../../pages/Home.module.css';
@@ -57,7 +58,7 @@ export function Hero() {
             <span>自社対応のララ株式会社</span>
           </h1>
           <div data-hero-motion="actions" className={styles.heroCtas}>
-            <a className={styles.primaryCta} href="/contact"><MailIcon /> まずは無料で相談する <Arrow /></a>
+            <a className={styles.primaryCta} href={withBase('/contact')}><MailIcon /> まずは無料で相談する <Arrow /></a>
             <a className={styles.secondaryCta} href={`tel:${company.phone.replaceAll('-', '')}`}>
               <span><PhoneIcon /> お電話で相談する</span>
               <strong>{company.phone}</strong>
@@ -70,7 +71,7 @@ export function Hero() {
               <img
                 key={slide.src}
                 className={`${styles.heroSlide} ${index === activeSlide ? styles.heroSlideActive : ''}`}
-                src={slide.src}
+                src={withBase(slide.src)}
                 alt={slide.alt}
                 width={slide.width}
                 height={slide.height}

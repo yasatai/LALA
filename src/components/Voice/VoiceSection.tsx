@@ -1,5 +1,6 @@
 import { voices } from '../../data/lala';
 import { siteFaqs } from '../../data/siteFaqs';
+import { withBase } from '../../lib/basePath';
 import { Arrow } from '../LalaPrimitives';
 import { VoiceCard } from './VoiceCard';
 import styles from '../../pages/Home.module.css';
@@ -10,7 +11,7 @@ export function VoiceSection() {
       <div data-motion-group="voice" className={styles.voiceOverview}>
         <div data-motion-item data-motion-order="0" className={styles.sectionHead}>
           <h2 id="voice-title">お客様の声</h2>
-          <a href="/voices">すべての声を見る <Arrow /></a>
+          <a href={withBase('/voices')}>すべての声を見る <Arrow /></a>
         </div>
         <div className={styles.voiceGrid}>
           {voices.map((item, index) => <VoiceCard key={item.name} item={item} motionOrder={index + 1} />)}

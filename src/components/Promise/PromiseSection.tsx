@@ -1,4 +1,5 @@
 import { promises } from '../../data/lala';
+import { withBase } from '../../lib/basePath';
 import styles from '../../pages/Home.module.css';
 
 const promiseIcons = ['♧', '♢', '♡'];
@@ -30,7 +31,7 @@ export function PromiseSection() {
       </div>
       <aside data-motion-item data-motion-order="4" className={styles.promiseSponsor} aria-label="ベガルタ仙台">
         <img
-          src="/images/vegalta-sendai-transparent.png"
+          src={withBase('/images/vegalta-sendai-transparent.png')}
           loading="lazy"
           decoding="async"
           fetchPriority="low"

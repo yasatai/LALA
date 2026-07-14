@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, type KeyboardEvent } from 'react';
 import { homeWorks } from '../../data/lala';
+import { withBase } from '../../lib/basePath';
 import { WorkCard } from './WorkCard';
 import styles from '../../pages/Home.module.css';
 
@@ -86,7 +87,7 @@ export function WorksSection() {
       <div className={styles.worksInner}>
         <header data-motion-item data-motion-order="0" className={styles.worksHeader}>
           <h2 id="works-title">施工イメージ</h2>
-          <a className={styles.worksAllLink} href="/works">
+          <a className={styles.worksAllLink} href={withBase('/works')}>
             <span>すべての事例を見る</span>
             <b aria-hidden="true">→</b>
           </a>

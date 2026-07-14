@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { BottomNavigation } from './components/BottomNavigation/BottomNavigation';
+import { stripBase } from './lib/basePath';
 import { Home } from './pages/Home';
 import { NotFound } from './pages/NotFound';
 import type { SitePageKey } from './pages/SiteContentPage';
@@ -17,7 +18,8 @@ const sitePages: Record<string, SitePageKey> = {
 };
 
 export default function App() {
-  const path = typeof window !== 'undefined' ? window.location.pathname.replace(/\/$/, '') : '';
+  const rawPath = typeof window !== 'undefined' ? window.location.pathname : '/';
+  const path = stripBase(rawPath).replace(/\/$/, '');
   let page;
 
   if (path === '/privacy-policy') {

@@ -1,6 +1,7 @@
 import { Breadcrumb } from '../components/Breadcrumb/Breadcrumb';
 import { SiteClosing } from '../components/Footer/SiteClosing';
 import { Header } from '../components/Header/Header';
+import { withBase } from '../lib/basePath';
 import { privacyPolicySeo } from '../seo/pageSeo';
 import { useSeo } from '../seo/seo';
 import styles from './Home.module.css';
@@ -170,13 +171,13 @@ export function PrivacyPolicy() {
               フリーダイヤル：<a href="tel:0120189269">0120-189-269</a><br />
               代表電話：<a href="tel:0227484297">022-748-4297</a><br />
               電話受付時間：9:00～17:00<br />
-              お問い合わせ方法：当社Webサイトの<a href="/contact">お問い合わせフォーム</a>またはお電話<br /><br />
+              お問い合わせ方法：当社Webサイトの<a href={withBase('/contact')}>お問い合わせフォーム</a>またはお電話<br /><br />
               制定日：2026年7月11日<br />
               最終改定日：2026年7月11日
             </address>
           </section>
         </div>
-        <a className={styles.policyBack} href="/contact">お問い合わせへ戻る</a>
+        <a className={styles.policyBack} href={withBase('/contact')}>お問い合わせへ戻る</a>
       </main>
       <SiteClosing showCta />
     </>

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { SiteClosing } from '../components/Footer/SiteClosing';
 import { Header } from '../components/Header/Header';
+import { withBase } from '../lib/basePath';
 import styles from './Home.module.css';
 
 export function NotFound() {
@@ -37,8 +38,8 @@ export function NotFound() {
         <h1>ページが見つかりません</h1>
         <p>URLが変更されたか、ページが削除された可能性があります。</p>
         <div className={styles.notFoundActions}>
-          <a href="/">トップページへ戻る</a>
-          <a href="/contact">お問い合わせ</a>
+          <a href={withBase('/')}>トップページへ戻る</a>
+          <a href={withBase('/contact')}>お問い合わせ</a>
         </div>
       </main>
       <SiteClosing />

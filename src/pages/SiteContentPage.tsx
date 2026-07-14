@@ -2,6 +2,7 @@ import { Breadcrumb } from '../components/Breadcrumb/Breadcrumb';
 import { SiteClosing } from '../components/Footer/SiteClosing';
 import { Header } from '../components/Header/Header';
 import { serviceDetails, voiceStories, works } from '../data/lala';
+import { withBase } from '../lib/basePath';
 import { useSeo } from '../seo/seo';
 import styles from './SiteContentPage.module.css';
 
@@ -81,13 +82,13 @@ function PageBody({ page }: { page: SitePageKey }) {
   if (page === 'services') {
     return <div className={styles.serviceDetailGrid}>{serviceDetails.map((service) => (
       <article id={`service-${service.number}`} className={styles.serviceDetailItem} key={service.number}>
-        <img src={service.image} alt={`${service.title}の施工イメージ`} width="800" height="600" loading="lazy" decoding="async" fetchPriority="low" />
+        <img src={withBase(service.image)} alt={`${service.title}の施工イメージ`} width="800" height="600" loading="lazy" decoding="async" fetchPriority="low" />
         <div className={styles.serviceDetailBody}>
           <span className={styles.number}>{service.number}</span>
           <h2>{service.title}</h2>
           <ul>{service.items.map((item) => <li key={item}>{item}</li>)}</ul>
           <p>{service.text}</p>
-          <a href="/contact">この工事について相談する →</a>
+          <a href={withBase('/contact')}>この工事について相談する →</a>
         </div>
       </article>
     ))}</div>;
@@ -97,10 +98,10 @@ function PageBody({ page }: { page: SitePageKey }) {
     return <div className={styles.workGrid}>{works.map((work) => (
       <article className={styles.workItem} key={work.title}>
         <div className={styles.workImages}>
-          <figure><img src={work.before} alt={`${work.title}の施工前`} width="640" height="480" loading="lazy" decoding="async" fetchPriority="low" /><figcaption>Before</figcaption></figure>
-          <figure><img src={work.after} alt={`${work.title}の施工後`} width="640" height="480" loading="lazy" decoding="async" fetchPriority="low" /><figcaption>After</figcaption></figure>
+          <figure><img src={withBase(work.before)} alt={`${work.title}の施工前`} width="640" height="480" loading="lazy" decoding="async" fetchPriority="low" /><figcaption>Before</figcaption></figure>
+          <figure><img src={withBase(work.after)} alt={`${work.title}の施工後`} width="640" height="480" loading="lazy" decoding="async" fetchPriority="low" /><figcaption>After</figcaption></figure>
         </div>
-        <div>{(work.area || work.period) && <span className={styles.eyebrow}>{[work.area, work.period].filter(Boolean).join(' / ')}</span>}<h2>{work.title}</h2><p>{work.text}</p><a className={styles.pageLink} href="/contact">同様の工事を相談する →</a></div>
+        <div>{(work.area || work.period) && <span className={styles.eyebrow}>{[work.area, work.period].filter(Boolean).join(' / ')}</span>}<h2>{work.title}</h2><p>{work.text}</p><a className={styles.pageLink} href={withBase('/contact')}>同様の工事を相談する →</a></div>
       </article>
     ))}</div>;
   }
@@ -148,7 +149,7 @@ function PageBody({ page }: { page: SitePageKey }) {
   if (page === 'blog') {
     return <div className={styles.blogLayout}>
       <div><span className={styles.eyebrow}>@lalareform</span><h2 className={styles.sectionTitle}>Instagramで<br />施工例を更新中</h2><p className={styles.companyText}>最新の施工例や住まいづくりの様子をご覧いただけます。</p><a className={styles.pageLink} href="https://www.instagram.com/lalareform/" target="_blank" rel="noreferrer">Instagramを見る →</a></div>
-      <div className={styles.blogGrid}>{instagramImages.map((image) => <img key={image} src={image} alt="施工イメージ" width="480" height="480" loading="lazy" decoding="async" fetchPriority="low" />)}</div>
+      <div className={styles.blogGrid}>{instagramImages.map((image) => <img key={image} src={withBase(image)} alt="施工イメージ" width="480" height="480" loading="lazy" decoding="async" fetchPriority="low" />)}</div>
     </div>;
   }
 
@@ -179,7 +180,7 @@ export function SiteContentPage({ page }: { page: SitePageKey }) {
   return <div id="top" className={styles.page}>
     <Header />
     <main id="main">
-      <header className={`${styles.hero} ${heroVariant}`}><Breadcrumb trail={[{ name: 'ホーム', path: '/' }, { name: meta.title, path: meta.path }]} /><span>{meta.label}</span><h1>{meta.title}</h1><p>{meta.description}</p><a href="/">← トップページへ戻る</a></header>
+      <header className={`${styles.hero} ${heroVariant}`}><Breadcrumb trail={[{ name: 'ホーム', path: '/' }, { name: meta.title, path: meta.path }]} /><span>{meta.label}</span><h1>{meta.title}</h1><p>{meta.description}</p><a href={withBase('/')}>← トップページへ戻る</a></header>
       <section className={styles.content} aria-label={meta.title}><PageBody page={page} /></section>
     </main>
     <SiteClosing showCta />

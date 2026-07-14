@@ -1,5 +1,6 @@
 import { useEffect, useState, type CSSProperties } from 'react';
 import { municipalities, municipalityRegions } from '../../data/municipalities';
+import { withBase } from '../../lib/basePath';
 import styles from '../../pages/Home.module.css';
 import {
   getPreparedMiyagiMapData,
@@ -77,7 +78,7 @@ export function MiyagiMunicipalityMap({ selectedCode, onSelect, onReady }: Miyag
               <rect width="1086" height="1448" fill="#dce4d3" />
               <image
                 className={styles.mapConstructionPhoto}
-                href="/images/service-interior-map.webp"
+                href={withBase('/images/service-interior-map.webp')}
                 x="-250"
                 y="0"
                 width="1600"

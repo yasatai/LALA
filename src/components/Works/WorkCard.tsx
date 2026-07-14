@@ -1,5 +1,6 @@
 import { useRef, useState, type KeyboardEvent, type PointerEvent } from 'react';
 import type { homeWorks } from '../../data/lala';
+import { withBase, withBaseSrcSet } from '../../lib/basePath';
 import styles from '../../pages/Home.module.css';
 
 type WorkItem = (typeof homeWorks)[number];
@@ -64,8 +65,8 @@ export function WorkCard({ work, motionOrder, onCompareStart, onCompareEnd }: Wo
     <article data-motion-item data-motion-order={motionOrder} className={styles.workCard}>
       <div ref={compareRef} className={styles.workCompare}>
         <img
-          src={work.after}
-          srcSet={`${optimizedAfter} 960w`}
+          src={withBase(work.after)}
+          srcSet={withBaseSrcSet(`${optimizedAfter} 960w`)}
           sizes="(max-width: 767px) calc(100vw - 40px), clamp(380px, 32vw, 600px)"
           alt={`${work.title}の施工後`}
           width="720"
@@ -76,8 +77,8 @@ export function WorkCard({ work, motionOrder, onCompareStart, onCompareEnd }: Wo
         />
         <img
           className={styles.workBefore}
-          src={work.before}
-          srcSet={`${optimizedBefore} 960w`}
+          src={withBase(work.before)}
+          srcSet={withBaseSrcSet(`${optimizedBefore} 960w`)}
           sizes="(max-width: 767px) calc(100vw - 40px), clamp(380px, 32vw, 600px)"
           alt={`${work.title}の施工前`}
           width="720"

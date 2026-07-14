@@ -1,3 +1,4 @@
+import { withBase } from '../../lib/basePath';
 import type { BreadcrumbTrail } from '../../seo/seo';
 import styles from './Breadcrumb.module.css';
 
@@ -16,7 +17,7 @@ export function Breadcrumb({ trail }: { trail: BreadcrumbTrail }) {
               {isCurrent ? (
                 <span aria-current="page">{crumb.name}</span>
               ) : (
-                <a href={crumb.path}>{crumb.name}</a>
+                <a href={withBase(crumb.path)}>{crumb.name}</a>
               )}
             </li>
           );

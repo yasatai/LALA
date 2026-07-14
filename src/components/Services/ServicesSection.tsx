@@ -1,4 +1,5 @@
 import { services } from '../../data/lala';
+import { withBase } from '../../lib/basePath';
 import { Arrow } from '../LalaPrimitives';
 import { ServiceCard } from './ServiceCard';
 import styles from '../../pages/Home.module.css';
@@ -14,7 +15,7 @@ export function ServicesSection() {
             <span>Services</span>
             <h2 id="services-title">サービスメニュー</h2>
           </div>
-          <a href="/services">すべてのサービスを見る <Arrow /></a>
+          <a href={withBase('/services')}>すべてのサービスを見る <Arrow /></a>
         </div>
         <div className={styles.serviceMosaic}>
           {serviceRows.map((row, rowIndex) => (
