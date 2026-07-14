@@ -4,7 +4,7 @@ import { useEffect } from 'react';
  * 本番ドメイン。canonical / og:url / sitemap の絶対URLの基点。
  * ドメインが変わる場合はこの1箇所を書き換えれば全ページに反映される。
  */
-export const SITE_URL = 'https://miyagi-tosou.com';
+export const SITE_URL = 'https://lala-reform.com';
 
 export const SITE_NAME = 'LALA ララ株式会社';
 

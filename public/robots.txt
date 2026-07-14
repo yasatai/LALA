@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://miyagi-tosou.com/sitemap.xml
+Sitemap: https://lala-reform.com/sitemap.xml
