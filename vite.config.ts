@@ -8,7 +8,6 @@ export default defineConfig({
   server: {
     port: 5500,
     host: 'localhost',
-    middlewareMode: true,
   },
   preview: {
     port: 5500,
