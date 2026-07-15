@@ -108,7 +108,7 @@ function PageBody({ page }: { page: SitePageKey }) {
 
   if (page === 'company') {
     return <div className={styles.companyLayout}>
-      <div><p className={styles.companyCopy}>診断から施工まで、<br />住まいの悩みに自社対応。</p><p className={styles.companyText}>ララ株式会社は、宮城・仙台を中心に住まいのお悩みに寄り添う地域密着のリフォーム会社です。小さな修繕から大規模な工事まで、状況を丁寧に確認し、必要な施工をご提案します。</p><div className={styles.companyMap}><iframe src="https://www.google.com/maps?q=宮城県仙台市太白区長町南4丁目12-16&output=embed" title="ララ株式会社 所在地" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div><p className={styles.companyMapAddress}>〒982-0012　宮城県仙台市太白区長町南4丁目12-16</p></div>
+      <div><p className={styles.companyCopy}>診断から施工まで、<br />住まいの悩みに自社対応</p><p className={styles.companyText}>ララ株式会社は、宮城・仙台を中心に住まいのお悩みに寄り添う地域密着のリフォーム会社です。小さな修繕から大規模な工事まで、状況を丁寧に確認し、必要な施工をご提案します。</p><div className={styles.companyMap}><iframe src="https://www.google.com/maps?q=宮城県仙台市太白区長町南4丁目12-16&output=embed" title="ララ株式会社 所在地" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div><p className={styles.companyMapAddress}>〒982-0012　宮城県仙台市太白区長町南4丁目12-16</p></div>
       <dl className={styles.definitionList}>
         <div><dt>名称</dt><dd>ララ株式会社</dd></div>
         <div><dt>代表者名</dt><dd>代表取締役　栗原 裕輔</dd></div>

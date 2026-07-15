@@ -150,7 +150,7 @@ export function AreaStorySection() {
       <div className={styles.areaStoryStage}>
         <div className={styles.storyIntro}>
           <span>Our Service Area</span>
-          <h2 id="area-story-title">住まいの悩みに応えるために、私たちは宮城の街へ。</h2>
+          <h2 id="area-story-title">住まいの悩みに応えるために、私たちは宮城の街へ</h2>
           <p>仙台市を中心に、暮らしのそばへ。地域を知る私たちだからできる、迅速で丁寧な住まいづくりがあります。</p>
         </div>
 
