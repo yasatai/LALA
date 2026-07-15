@@ -552,6 +552,7 @@ a:hover .arrow {
 .promiseTitleMain {
   font-size: clamp(27px, 2vw, 36px);
   line-height: 1.25;
+  white-space: nowrap;
 }
 
 .promiseIntro {
@@ -604,6 +605,10 @@ a:hover .arrow {
 
 .promiseList article:first-child > span {
   transform: translateX(3px);
+}
+
+.promiseList article:first-child h3 {
+  text-indent: -0.35em;
 }
 
 .promiseList h3 {
