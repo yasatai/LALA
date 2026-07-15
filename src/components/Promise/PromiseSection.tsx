@@ -12,6 +12,16 @@ const titlePhrases: Record<string, string[]> = {
   'ずっと安心のサポート': ['ずっと安心の', 'サポート'],
 };
 
+// 説明文が折り返す幅でも文節単位で改行させる
+const linePhrases: Record<string, string[]> = {
+  'ご家族の想いや暮らし方を丁寧に伺い': ['ご家族の', '想いや', '暮らし方を', '丁寧に伺い'],
+  '最適なプランをご提案します。': ['最適なプランを', 'ご提案します。'],
+  '経験豊富な職人が細かな部分まで': ['経験豊富な', '職人が', '細かな部分まで'],
+  '品質を確かめて施工します。': ['品質を確かめて', '施工します。'],
+  '工事後も安心して暮らせるよう': ['工事後も', '安心して', '暮らせるよう'],
+  '点検と相談体制を続けます。': ['点検と', '相談体制を', '続けます。'],
+};
+
 export function PromiseSection() {
   return (
     <section data-motion-group="promise" className={`${styles.section} ${styles.promiseSection}`} aria-labelledby="promise-title">
@@ -30,7 +40,7 @@ export function PromiseSection() {
               <h3>{gluePhrases(...(titlePhrases[item.title] ?? [item.title]))}</h3>
               <p>
                 {item.descriptionLines.map((line) => (
-                  <span className={styles.promiseDescriptionLine} key={line}>{line}</span>
+                  <span className={styles.promiseDescriptionLine} key={line}>{gluePhrases(...(linePhrases[line] ?? [line]))}</span>
                 ))}
               </p>
             </div>
