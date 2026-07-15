@@ -603,10 +603,6 @@ a:hover .arrow {
   line-height: 1;
 }
 
-.promiseList article:first-child > span {
-  transform: translateX(3px);
-}
-
 .promiseList article:first-child h3 {
   text-indent: -0.35em;
 }
