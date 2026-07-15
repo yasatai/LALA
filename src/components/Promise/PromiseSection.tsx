@@ -1,8 +1,16 @@
 import { promises } from '../../data/lala';
 import { withBase } from '../../lib/basePath';
+import { gluePhrases } from '../../lib/jaText';
 import styles from '../../pages/Home.module.css';
 
 const promiseIcons = ['♧', '♢', '♡'];
+
+// 見出しの改行位置を語句単位に制御する（語句の途中で折り返さない）
+const titlePhrases: Record<string, string[]> = {
+  '丁寧なヒアリング': ['丁寧な', 'ヒアリング'],
+  '確かな品質と施工': ['確かな', '品質と施工'],
+  'ずっと安心のサポート': ['ずっと安心の', 'サポート'],
+};
 
 export function PromiseSection() {
   return (
@@ -19,7 +27,7 @@ export function PromiseSection() {
           <article data-motion-item data-motion-order={index + 1} key={item.number}>
             <span aria-hidden="true">{promiseIcons[index]}</span>
             <div>
-              <h3>{item.title}</h3>
+              <h3>{gluePhrases(...(titlePhrases[item.title] ?? [item.title]))}</h3>
               <p>
                 {item.descriptionLines.map((line) => (
                   <span className={styles.promiseDescriptionLine} key={line}>{line}</span>

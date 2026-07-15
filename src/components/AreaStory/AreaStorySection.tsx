@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { withBase } from '../../lib/basePath';
+import { JaSentences } from '../../lib/jaText';
 import styles from '../../pages/Home.module.css';
 import { MiyagiMunicipalityMap } from './MiyagiMunicipalityMap';
 
@@ -151,7 +152,7 @@ export function AreaStorySection() {
         <div className={styles.storyIntro}>
           <span>Our Service Area</span>
           <h2 id="area-story-title">住まいの悩みに応えるために、私たちは宮城の街へ</h2>
-          <p>仙台市を中心に、暮らしのそばへ。地域を知る私たちだからできる、迅速で丁寧な住まいづくりがあります。</p>
+          <p><JaSentences text="仙台市を中心に、暮らしのそばへ。地域を知る私たちだからできる、迅速で丁寧な住まいづくりがあります。" /></p>
         </div>
 
         <div
@@ -184,10 +185,10 @@ export function AreaStorySection() {
           <div className={styles.storyAbout}>
             <span>Rooted in Sendai</span>
             <h2>仙台に根ざした<br />住まいの相談役</h2>
-            <p>ララリフォームは、宮城・仙台を中心に、住まいのお悩みに寄り添う地域密着のリフォーム会社です。小さな修繕から大規模リフォームまで、自社対応による確かな品質でお応えします。</p>
+            <p><JaSentences text="ララリフォームは、宮城・仙台を中心に、住まいのお悩みに寄り添う地域密着のリフォーム会社です。小さな修繕から大規模リフォームまで、自社対応による確かな品質でお応えします。" /></p>
             <div className={styles.storyConsultationNote}>
               <strong>まずは相談だけでも大丈夫です</strong>
-              <p>ご相談・お見積もりは無料です。無理な営業はせず、住まいの状態に合わせて必要なことだけをご案内します。</p>
+              <p><JaSentences text="ご相談・お見積もりは無料です。無理な営業はせず、住まいの状態に合わせて必要なことだけをご案内します。" /></p>
             </div>
             <div className={styles.storyAboutActions}>
               <a href={withBase('/contact')}>私たちに相談する <b aria-hidden="true">→</b></a>
@@ -199,13 +200,13 @@ export function AreaStorySection() {
             <h3>お問い合わせ前のご不安に</h3>
             <ol className={styles.storyInfoList}>
               {assurances.map(([number, title, text]) => (
-                <li key={number}><b>{number}</b><div><strong>{title}</strong><p>{text}</p></div></li>
+                <li key={number}><b>{number}</b><div><strong>{title}</strong><p><JaSentences text={text} /></p></div></li>
               ))}
             </ol>
             <h3>ご相談から施工まで</h3>
             <ol className={styles.storyInfoList}>
               {consultationFlow.map(([number, title, text]) => (
-                <li key={number}><b>{number}</b><div><strong>{title}</strong><p>{text}</p></div></li>
+                <li key={number}><b>{number}</b><div><strong>{title}</strong><p><JaSentences text={text} /></p></div></li>
               ))}
             </ol>
           </aside>

@@ -1,5 +1,6 @@
 import type { voices } from '../../data/lala';
 import { withBase, withBaseSrcSet } from '../../lib/basePath';
+import { glueJa, gluePhrases } from '../../lib/jaText';
 import styles from '../../pages/Home.module.css';
 import { Arrow } from '../LalaPrimitives';
 
@@ -39,8 +40,8 @@ export function VoiceCard({ item, motionOrder }: VoiceCardProps) {
           <blockquote>
             {quoteParts ? <><span className={styles.voiceCardQuotePhrase}>{quoteParts[0]}</span><wbr /><span className={styles.voiceCardQuotePhrase}>{quoteParts[1]}</span></> : item.quote}
           </blockquote>
-          <p>{item.text}</p>
-          <span>{item.name} / {item.detail}</span>
+          <p>{glueJa(item.text)}</p>
+          <span>{item.name} / {gluePhrases(item.detail)}</span>
         </div>
         <span className={styles.voiceCardArrow} aria-hidden="true"><Arrow /></span>
       </a>

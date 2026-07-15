@@ -3,6 +3,7 @@ import { SiteClosing } from '../components/Footer/SiteClosing';
 import { Header } from '../components/Header/Header';
 import { serviceDetails, voiceStories, works } from '../data/lala';
 import { withBase } from '../lib/basePath';
+import { glueJa, gluePhrases, JaSentences } from '../lib/jaText';
 import { useSeo } from '../seo/seo';
 import styles from './SiteContentPage.module.css';
 
@@ -72,7 +73,7 @@ const companyServices = [
   '内装工事一式',
   'クロス張り替え',
   'オール電化',
-  '風呂、トイレ、キッチン、洗面化粧台等の水まわり工事',
+  '風呂・トイレ・キッチン・洗面化粧台等の水まわり工事',
   'アリ駆除',
   '害虫駆除',
   '床下工事',
@@ -86,8 +87,8 @@ function PageBody({ page }: { page: SitePageKey }) {
         <div className={styles.serviceDetailBody}>
           <span className={styles.number}>{service.number}</span>
           <h2>{service.title}</h2>
-          <ul>{service.items.map((item) => <li key={item}>{item}</li>)}</ul>
-          <p>{service.text}</p>
+          <ul>{service.items.map((item) => <li key={item}>{glueJa(item)}</li>)}</ul>
+          <p><JaSentences text={service.text} /></p>
           <a href={withBase('/contact')}>この工事について相談する →</a>
         </div>
       </article>
@@ -101,28 +102,28 @@ function PageBody({ page }: { page: SitePageKey }) {
           <figure><img src={withBase(work.before)} alt={`${work.title}の施工前`} width="640" height="480" loading="lazy" decoding="async" fetchPriority="low" /><figcaption>Before</figcaption></figure>
           <figure><img src={withBase(work.after)} alt={`${work.title}の施工後`} width="640" height="480" loading="lazy" decoding="async" fetchPriority="low" /><figcaption>After</figcaption></figure>
         </div>
-        <div>{(work.area || work.period) && <span className={styles.eyebrow}>{[work.area, work.period].filter(Boolean).join(' / ')}</span>}<h2>{work.title}</h2><p>{work.text}</p><a className={styles.pageLink} href={withBase('/contact')}>同様の工事を相談する →</a></div>
+        <div>{(work.area || work.period) && <span className={styles.eyebrow}>{[work.area, work.period].filter(Boolean).join(' / ')}</span>}<h2>{glueJa(work.title)}</h2><p>{glueJa(work.text)}</p><a className={styles.pageLink} href={withBase('/contact')}>同様の工事を相談する →</a></div>
       </article>
     ))}</div>;
   }
 
   if (page === 'company') {
     return <div className={styles.companyLayout}>
-      <div><p className={styles.companyCopy}>診断から施工まで、<br />住まいの悩みに自社対応</p><p className={styles.companyText}>ララ株式会社は、宮城・仙台を中心に住まいのお悩みに寄り添う地域密着のリフォーム会社です。小さな修繕から大規模な工事まで、状況を丁寧に確認し、必要な施工をご提案します。</p><div className={styles.companyMap}><iframe src="https://www.google.com/maps?q=宮城県仙台市太白区長町南4丁目12-16&output=embed" title="ララ株式会社 所在地" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div><p className={styles.companyMapAddress}>〒982-0012　宮城県仙台市太白区長町南4丁目12-16</p></div>
+      <div><p className={styles.companyCopy}>診断から施工まで<br />住まいの悩みに自社対応</p><p className={styles.companyText}><JaSentences text="ララ株式会社は、宮城・仙台を中心に住まいのお悩みに寄り添う地域密着のリフォーム会社です。小さな修繕から大規模な工事まで、状況を丁寧に確認し、必要な施工をご提案します。" /></p><div className={styles.companyMap}><iframe src="https://www.google.com/maps?q=宮城県仙台市太白区長町南4丁目12-16&output=embed" title="ララ株式会社 所在地" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div><p className={styles.companyMapAddress}>{gluePhrases('〒982-0012　', '宮城県仙台市太白区', '長町南4丁目12-16')}</p></div>
       <dl className={styles.definitionList}>
         <div><dt>名称</dt><dd>ララ株式会社</dd></div>
         <div><dt>代表者名</dt><dd>代表取締役　栗原 裕輔</dd></div>
-        <div><dt>所在地</dt><dd>〒982-0012　宮城県仙台市太白区長町南4丁目12-16</dd></div>
+        <div><dt>所在地</dt><dd>{gluePhrases('〒982-0012　', '宮城県仙台市太白区', '長町南4丁目12-16')}</dd></div>
         <div><dt>TEL / FAX</dt><dd><a href="tel:0227484297">TEL 022-748-4297</a><br />FAX 022-748-4298</dd></div>
         <div><dt>資本金</dt><dd>300万円</dd></div>
         <div><dt>従業員</dt><dd>36名（令和4年11月現在）</dd></div>
         <div className={styles.companyServicesRow}>
           <dt>事業案内</dt>
-          <dd><ul className={styles.companyServices}>{companyServices.map((service) => <li key={service}>{service}</li>)}</ul></dd>
+          <dd><ul className={styles.companyServices}>{companyServices.map((service) => <li key={service} className={[...service].length > 12 ? styles.companyServiceWide : undefined}>{[...service].length > 12 ? gluePhrases('風呂・トイレ・', 'キッチン・', '洗面化粧台等の', '水まわり工事') : glueJa(service)}</li>)}</ul></dd>
         </div>
         <div>
           <dt>業務提携会社</dt>
-          <dd><strong>株式会社 FIND</strong><br />〒980-0803　宮城県仙台市青葉区国分町3-6-11 アーク仙台ビル3F<br /><a href="tel:0223954355">TEL 022-395-4355</a>　FAX 022-211-8782</dd>
+          <dd><strong>株式会社 FIND</strong><br />{gluePhrases('〒980-0803　', '宮城県仙台市青葉区', '国分町3-6-11', ' ', 'アーク仙台ビル3F')}<br /><a href="tel:0223954355">TEL 022-395-4355</a>　{gluePhrases('FAX 022-211-8782')}</dd>
         </div>
       </dl>
     </div>;
@@ -137,10 +138,10 @@ function PageBody({ page }: { page: SitePageKey }) {
           <p>{voice.area} / {voice.age}</p>
         </header>
         <dl className={styles.voiceDetails}>
-          <div><dt>実施内容</dt><dd>{voice.service}</dd></div>
-          <div><dt>工事前の悩み</dt><dd>{voice.concern}</dd></div>
-          <div><dt>LALAに相談した理由</dt><dd>{voice.reason}</dd></div>
-          <div className={styles.voiceImpression}><dt>工事後の感想</dt><dd>{voice.impression}</dd></div>
+          <div><dt>実施内容</dt><dd>{glueJa(voice.service)}</dd></div>
+          <div><dt>工事前の悩み</dt><dd>{glueJa(voice.concern)}</dd></div>
+          <div><dt>LALAに相談した理由</dt><dd>{glueJa(voice.reason)}</dd></div>
+          <div className={styles.voiceImpression}><dt>工事後の感想</dt><dd><JaSentences text={voice.impression} /></dd></div>
         </dl>
       </article>
     ))}</div>;
@@ -148,7 +149,7 @@ function PageBody({ page }: { page: SitePageKey }) {
 
   if (page === 'blog') {
     return <div className={styles.blogLayout}>
-      <div><span className={styles.eyebrow}>@lalareform</span><h2 className={styles.sectionTitle}>Instagramで<br />施工例を更新中</h2><p className={styles.companyText}>最新の施工例や住まいづくりの様子をご覧いただけます。</p><a className={styles.pageLink} href="https://www.instagram.com/lalareform/" target="_blank" rel="noreferrer">Instagramを見る →</a></div>
+      <div><span className={styles.eyebrow}>@lalareform</span><h2 className={styles.sectionTitle}>Instagramで<br />施工例を更新中</h2><p className={styles.companyText}>{glueJa('最新の施工例や住まいづくりの様子をご覧いただけます。')}</p><a className={styles.pageLink} href="https://www.instagram.com/lalareform/" target="_blank" rel="noreferrer">Instagramを見る →</a></div>
       <div className={styles.blogGrid}>{instagramImages.map((image) => <img key={image} src={withBase(image)} alt="施工イメージ" width="480" height="480" loading="lazy" decoding="async" fetchPriority="low" />)}</div>
     </div>;
   }
@@ -180,7 +181,7 @@ export function SiteContentPage({ page }: { page: SitePageKey }) {
   return <div id="top" className={styles.page}>
     <Header />
     <main id="main">
-      <header className={`${styles.hero} ${heroVariant}`}><Breadcrumb trail={[{ name: 'ホーム', path: '/' }, { name: meta.title, path: meta.path }]} /><span>{meta.label}</span><h1>{meta.title}</h1><p>{meta.description}</p><a href={withBase('/')}>← トップページへ戻る</a></header>
+      <header className={`${styles.hero} ${heroVariant}`}><Breadcrumb trail={[{ name: 'ホーム', path: '/' }, { name: meta.title, path: meta.path }]} /><span>{meta.label}</span><h1>{glueJa(meta.title)}</h1><p>{glueJa(meta.description)}</p><a href={withBase('/')}>← トップページへ戻る</a></header>
       <section className={styles.content} aria-label={meta.title}><PageBody page={page} /></section>
     </main>
     <SiteClosing showCta />

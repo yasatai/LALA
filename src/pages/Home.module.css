@@ -703,6 +703,7 @@ a:hover .arrow {
   font-size: 10px;
   font-weight: 600;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .services {

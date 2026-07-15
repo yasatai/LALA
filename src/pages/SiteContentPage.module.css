@@ -475,7 +475,7 @@
 
 .companyServices {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr));
   gap: 8px 22px;
   margin: 0;
   padding: 0;
@@ -485,6 +485,13 @@
 .companyServices li {
   position: relative;
   padding-left: 13px;
+  white-space: nowrap;
+}
+
+/* 長い項目は全幅に広げて折り返しを許可する */
+.companyServices li.companyServiceWide {
+  grid-column: 1 / -1;
+  white-space: normal;
 }
 
 .companyServices li::before {

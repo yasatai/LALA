@@ -1,6 +1,7 @@
 import { voices } from '../../data/lala';
 import { siteFaqs } from '../../data/siteFaqs';
 import { withBase } from '../../lib/basePath';
+import { glueJa, JaSentences } from '../../lib/jaText';
 import { Arrow } from '../LalaPrimitives';
 import { VoiceCard } from './VoiceCard';
 import styles from '../../pages/Home.module.css';
@@ -21,7 +22,7 @@ export function VoiceSection() {
         <div data-motion-item data-motion-order="0" className={styles.voiceFaq}>
           <div className={styles.voiceFaqHead}><span>FAQ</span><h3>よくある質問</h3></div>
           <div className={styles.voiceFaqList}>
-            {siteFaqs.map(([question, answer]) => <details data-faq-item key={question}><summary>{question}</summary><p>{answer}</p></details>)}
+            {siteFaqs.map(([question, answer]) => <details data-faq-item key={question}><summary>{glueJa(question)}</summary><p><JaSentences text={answer} /></p></details>)}
           </div>
         </div>
       </div>

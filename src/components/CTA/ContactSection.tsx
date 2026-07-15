@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { withBase } from '../../lib/basePath';
+import { glueJa, gluePhrases, JaSentences } from '../../lib/jaText';
 import { Arrow } from '../LalaPrimitives';
 import styles from '../../pages/Home.module.css';
 
@@ -68,21 +69,21 @@ export function ContactSection() {
       <div className={styles.contactInner}>
         <div className={styles.contactIntro}>
           <span>Contact</span>
-          <h1 id="contact-title">住まいのことを、<br />気軽にご相談ください。</h1>
-          <p>診断・現地確認・お見積もりのご相談を承ります。小さな修繕も、まずは状況をお聞かせください。</p>
+          <h1 id="contact-title">住まいのことを<br />{gluePhrases('気軽に', 'ご相談ください。')}</h1>
+          <p><JaSentences text="診断・現地確認・お見積もりのご相談を承ります。小さな修繕も、まずは状況をお聞かせください。" /></p>
           <div className={styles.contactNotice}>
-            <p>お問い合わせ・無料見積もりの送信は、工事契約の申込みではありません。</p>
-            <p>正式なお見積もりは、現地確認・内容確認後にご提示します。</p>
-            <p>工事契約は、見積書・工事内容等をご確認いただき、契約書面等により合意した時点で成立します。</p>
+            <p>{glueJa('お問い合わせ・無料見積もりの送信は、工事契約の申込みではありません。')}</p>
+            <p>{glueJa('正式なお見積もりは、現地確認・内容確認後にご提示します。')}</p>
+            <p>{glueJa('工事契約は、見積書・工事内容等をご確認いただき、契約書面等により合意した時点で成立します。')}</p>
           </div>
         </div>
 
         {submitted ? (
           <div className={styles.contactSuccess} role="status" aria-live="polite">
             <span aria-hidden="true">✓</span>
-            <h3>お問い合わせありがとうございます。</h3>
-            <p>内容を確認のうえ、担当者よりご連絡いたします。</p>
-            <p>この時点では、工事契約は成立していません。</p>
+            <h3>{glueJa('お問い合わせありがとうございます。')}</h3>
+            <p>{glueJa('内容を確認のうえ、担当者よりご連絡いたします。')}</p>
+            <p>{glueJa('この時点では、工事契約は成立していません。')}</p>
             <button type="button" onClick={() => setSubmitted(false)}>別の相談を入力する</button>
           </div>
         ) : (

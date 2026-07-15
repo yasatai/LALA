@@ -1,5 +1,6 @@
 import { company } from '../../data/lala';
 import { withBase } from '../../lib/basePath';
+import { JaSentences } from '../../lib/jaText';
 import { Arrow } from '../LalaPrimitives';
 import styles from '../../pages/Home.module.css';
 
@@ -10,8 +11,7 @@ export function FinalCTA() {
         <span className={styles.finalCtaEyebrow}>住まいのお困りごと</span>
         <h2 id="final-cta-title">まずは無料でご相談ください</h2>
         <p>
-          小さな修繕から大規模リフォームまで。お見積もり・ご相談は無料です。<br />
-          地域密着で、お客様の暮らしに合わせたご提案をいたします。
+          <JaSentences text="小さな修繕から大規模リフォームまで。お見積もり・ご相談は無料です。地域密着で、お客様の暮らしに合わせたご提案をいたします。" />
         </p>
       </div>
       <div data-motion-item data-motion-order="1" className={styles.finalCtaContact}>

@@ -1,4 +1,5 @@
 import { withBase, withBaseSrcSet } from '../../lib/basePath';
+import { gluePhrases } from '../../lib/jaText';
 import styles from '../../pages/Home.module.css';
 
 const serviceLinks = [
@@ -31,7 +32,7 @@ export function Footer() {
           width="280"
           height="148"
         />
-        <p>宮城県を中心に、住まいのリフォーム・<br />外装工事・修繕を行う地域密着の<br />リフォーム会社です。</p>
+        <p>{gluePhrases('宮城県を中心に、', '住まいの', 'リフォーム・')}<br />{gluePhrases('外装工事・', '修繕を行う', '地域密着の')}<br />{gluePhrases('リフォーム', '会社です。')}</p>
       </div>
       <section className={styles.footerColumn} aria-labelledby="footer-services-title">
         <h2 id="footer-services-title">サービス</h2>
@@ -50,7 +51,7 @@ export function Footer() {
         <dl>
           <div><dt>営業時間</dt><dd>9:00〜17:00</dd></div>
           <div><dt>対応エリア</dt><dd>宮城県全域</dd></div>
-          <div><dt>所在地</dt><dd>宮城県仙台市太白区長町南4丁目12-16</dd></div>
+          <div><dt>所在地</dt><dd>{gluePhrases('宮城県仙台市太白区', '長町南4丁目12-16')}</dd></div>
         </dl>
       </section>
       <img

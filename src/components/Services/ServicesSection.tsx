@@ -1,5 +1,6 @@
 import { services } from '../../data/lala';
 import { withBase } from '../../lib/basePath';
+import { gluePhrases } from '../../lib/jaText';
 import { Arrow } from '../LalaPrimitives';
 import { ServiceCard } from './ServiceCard';
 import styles from '../../pages/Home.module.css';
@@ -13,7 +14,7 @@ export function ServicesSection() {
         <div data-motion-item data-motion-order="0" className={styles.sectionHead}>
           <div className={styles.serviceHeading}>
             <span>Services</span>
-            <h2 id="services-title">サービスメニュー</h2>
+            <h2 id="services-title">{gluePhrases('サービス', 'メニュー')}</h2>
           </div>
           <a href={withBase('/services')}>すべてのサービスを見る <Arrow /></a>
         </div>
