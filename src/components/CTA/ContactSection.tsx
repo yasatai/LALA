@@ -137,7 +137,7 @@ export function ContactSection() {
             </label>
             <label className={styles.privacyConsent}>
               <input name="privacy" type="checkbox" value="agreed" />
-              <span><a href={withBase('/privacy-policy')}>プライバシーポリシー</a>に同意のうえ、送信します。</span>
+              <span><a href={withBase('/privacy-policy')}>プライバシーポリシー</a>{glueJa('に同意のうえ、送信します。')}</span>
             </label>
             {errors.privacy && <p className={styles.formError}>{errors.privacy}</p>}
             <button className={styles.contactSubmit} type="submit" disabled={isSubmitting}>

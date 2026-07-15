@@ -134,7 +134,7 @@ function PageBody({ page }: { page: SitePageKey }) {
       <article className={styles.voiceStory} key={voice.number}>
         <header>
           <span className={styles.voiceNumber}>Voice {voice.number}</span>
-          <h2>{voice.title}</h2>
+          <h2>{glueJa(voice.title)}</h2>
           <p>{voice.area} / {voice.age}</p>
         </header>
         <dl className={styles.voiceDetails}>

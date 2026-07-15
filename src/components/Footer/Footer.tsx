@@ -32,7 +32,7 @@ export function Footer() {
           width="280"
           height="148"
         />
-        <p>{gluePhrases('宮城県を中心に、', '住まいの', 'リフォーム・')}<br />{gluePhrases('外装工事・', '修繕を行う', '地域密着の')}<br />{gluePhrases('リフォーム', '会社です。')}</p>
+        <p>{gluePhrases('宮城県を', '中心に、住まいの', 'リフォーム・')}<br />{gluePhrases('外装工事・', '修繕を行う', '地域密着の')}<br />{gluePhrases('リフォーム', '会社です。')}</p>
       </div>
       <section className={styles.footerColumn} aria-labelledby="footer-services-title">
         <h2 id="footer-services-title">サービス</h2>

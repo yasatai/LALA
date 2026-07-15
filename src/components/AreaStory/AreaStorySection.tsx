@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { withBase } from '../../lib/basePath';
-import { JaSentences } from '../../lib/jaText';
+import { gluePhrases, JaSentences } from '../../lib/jaText';
 import styles from '../../pages/Home.module.css';
 import { MiyagiMunicipalityMap } from './MiyagiMunicipalityMap';
 
@@ -151,7 +151,7 @@ export function AreaStorySection() {
       <div className={styles.areaStoryStage}>
         <div className={styles.storyIntro}>
           <span>Our Service Area</span>
-          <h2 id="area-story-title">住まいの悩みに応えるために、私たちは宮城の街へ</h2>
+          <h2 id="area-story-title">{gluePhrases('住まいの悩みに', '応える', 'ために、私たちは', '宮城の街へ')}</h2>
           <p><JaSentences text="仙台市を中心に、暮らしのそばへ。地域を知る私たちだからできる、迅速で丁寧な住まいづくりがあります。" /></p>
         </div>
 
@@ -184,10 +184,10 @@ export function AreaStorySection() {
         <div className={styles.storyFinalContent}>
           <div className={styles.storyAbout}>
             <span>Rooted in Sendai</span>
-            <h2>仙台に根ざした<br />住まいの相談役</h2>
+            <h2>{gluePhrases('仙台に', '根ざした')}<br />{gluePhrases('住まいの', '相談役')}</h2>
             <p><JaSentences text="ララリフォームは、宮城・仙台を中心に、住まいのお悩みに寄り添う地域密着のリフォーム会社です。小さな修繕から大規模リフォームまで、自社対応による確かな品質でお応えします。" /></p>
             <div className={styles.storyConsultationNote}>
-              <strong>まずは相談だけでも大丈夫です</strong>
+              <strong>{gluePhrases('まずは相談だけでも', '大丈夫です')}</strong>
               <p><JaSentences text="ご相談・お見積もりは無料です。無理な営業はせず、住まいの状態に合わせて必要なことだけをご案内します。" /></p>
             </div>
             <div className={styles.storyAboutActions}>

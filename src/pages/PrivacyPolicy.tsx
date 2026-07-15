@@ -167,14 +167,14 @@ export function PrivacyPolicy() {
             <h2>{glueJa('14. 個人情報に関するお問い合わせ窓口')}</h2>
             <p><JaSentences text="個人情報の取扱いに関するご質問、苦情、相談または開示等のご請求は、以下の窓口までお問い合わせください。" /></p>
             <address>
-              ララ株式会社　個人情報お問い合わせ窓口<br />
+              {gluePhrases('ララ株式会社　', '個人情報', 'お問い合わせ窓口')}<br />
               {gluePhrases('所在地：〒982-0012 ', '宮城県仙台市太白区', '長町南4丁目12-16')}<br />
-              フリーダイヤル：<a href="tel:0120189269">0120-189-269</a><br />
-              代表電話：<a href="tel:0227484297">022-748-4297</a><br />
-              電話受付時間：9:00～17:00<br />
-              お問い合わせ方法：当社Webサイトの<a href={withBase('/contact')}>お問い合わせフォーム</a>またはお電話<br /><br />
-              制定日：2026年7月11日<br />
-              最終改定日：2026年7月11日
+              {gluePhrases('フリーダイヤル：')}<a href="tel:0120189269">0120-189-269</a><br />
+              {gluePhrases('代表電話：')}<a href="tel:0227484297">022-748-4297</a><br />
+              {gluePhrases('電話受付時間：', '9:00～17:00')}<br />
+              {gluePhrases('お問い合わせ方法：', '当社Webサイトの')}<a href={withBase('/contact')}>お問い合わせフォーム</a>{gluePhrases('またはお電話')}<br /><br />
+              {gluePhrases('制定日：', '2026年7月11日')}<br />
+              {gluePhrases('最終改定日：', '2026年7月11日')}
             </address>
           </section>
         </div>
