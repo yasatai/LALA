@@ -604,7 +604,7 @@ a:hover .arrow {
 }
 
 .promiseList article:first-child h3 {
-  text-indent: -0.55em;
+  text-indent: -0.35em;
 }
 
 .promiseList h3 {
@@ -3034,7 +3034,7 @@ a:hover .arrow {
   .municipalityDirectory {
     left: 34px;
     width: min(47vw, 470px);
-    gap-inline: 16px;
+    column-gap: 16px;
   }
 
   .storyAbout {
